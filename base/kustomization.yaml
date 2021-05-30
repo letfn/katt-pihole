@@ -3,3 +3,17 @@ kind: Kustomization
 
 resources:
   - pihole.yaml
+
+patches:
+- path: patch-service-loadbalancer.yaml
+  target:
+    kind: Service
+    name: pihole-dns-tcp
+- path: patch-service-loadbalancer.yaml
+  target:
+    kind: Service
+    name: pihole-dns-udp
+- path: patch-remove-dhcp.yaml
+  target:
+    kind: Service
+    name: pihole-dns-udp

@@ -8,5 +8,5 @@ clean/pihole.yaml:
 
 diff: pihole.yaml clean/pihole.yaml
 	kustomize build . > diff.yaml
-	diff pihole.yaml diff.yaml
+	-vimdiff pihole.yaml diff.yaml
 	rm -f diff.yaml

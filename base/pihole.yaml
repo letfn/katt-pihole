@@ -44,7 +44,7 @@ spec:
   selector:
     app: pihole
     release: pihole
-  type: LoadBalancer
+  type: NodePort
 ---
 apiVersion: v1
 kind: Service
@@ -62,10 +62,14 @@ spec:
     port: 53
     protocol: UDP
     targetPort: dns-udp
+  - name: client-udp
+    port: 67
+    protocol: UDP
+    targetPort: client-udp
   selector:
     app: pihole
     release: pihole
-  type: LoadBalancer
+  type: NodePort
 ---
 apiVersion: v1
 kind: Service
