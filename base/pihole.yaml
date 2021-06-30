@@ -7,7 +7,7 @@ kind: ConfigMap
 metadata:
   labels:
     app: pihole
-    chart: pihole-1.9.0
+    chart: pihole-2.0.0
     heritage: Helm
     release: pihole
   name: pihole-custom-dnsmasq
@@ -19,7 +19,7 @@ kind: Secret
 metadata:
   labels:
     app: pihole
-    chart: pihole-1.9.0
+    chart: pihole-2.0.0
     heritage: Helm
     release: pihole
   name: pihole-password
@@ -30,7 +30,7 @@ kind: Service
 metadata:
   labels:
     app: pihole
-    chart: pihole-1.9.0
+    chart: pihole-2.0.0
     heritage: Helm
     release: pihole
   name: pihole-dns-tcp
@@ -51,7 +51,7 @@ kind: Service
 metadata:
   labels:
     app: pihole
-    chart: pihole-1.9.0
+    chart: pihole-2.0.0
     heritage: Helm
     release: pihole
   name: pihole-dns-udp
@@ -62,10 +62,6 @@ spec:
     port: 53
     protocol: UDP
     targetPort: dns-udp
-  - name: client-udp
-    port: 67
-    protocol: UDP
-    targetPort: client-udp
   selector:
     app: pihole
     release: pihole
@@ -76,7 +72,7 @@ kind: Service
 metadata:
   labels:
     app: pihole
-    chart: pihole-1.9.0
+    chart: pihole-2.0.0
     heritage: Helm
     release: pihole
   name: pihole-web
@@ -100,7 +96,7 @@ kind: Deployment
 metadata:
   labels:
     app: pihole
-    chart: pihole-1.9.0
+    chart: pihole-2.0.0
     heritage: Helm
     release: pihole
   name: pihole
@@ -120,7 +116,7 @@ spec:
       annotations:
         checksum.config.adlists: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546
         checksum.config.blacklist: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546
-        checksum.config.dnsmasqConfig: b4e9378141618b50cc5fb03a6874984f7a56a611ff3e15ec66c1ca6f2b7d816
+        checksum.config.dnsmasqConfig: 8b72618ca3582fb0062a2a9c73b8beebb4a234642fab15da8127e9e7d47328b
         checksum.config.regex: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546
         checksum.config.staticDhcpConfig: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546
         checksum.config.whitelist: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546

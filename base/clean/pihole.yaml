@@ -6,7 +6,7 @@ metadata:
   name: pihole-password
   labels:
     app: pihole
-    chart: pihole-1.9.0
+    chart: pihole-2.0.0
     heritage: Helm
     release: pihole
 type: Opaque
@@ -20,7 +20,7 @@ metadata:
   name: pihole-custom-dnsmasq
   labels:
     app: pihole
-    chart: pihole-1.9.0
+    chart: pihole-2.0.0
     release: pihole
     heritage: Helm
 data:
@@ -35,7 +35,7 @@ metadata:
   name: pihole-dns-tcp
   labels:
     app: pihole
-    chart: pihole-1.9.0
+    chart: pihole-2.0.0
     release: pihole
     heritage: Helm
 spec:
@@ -57,7 +57,7 @@ metadata:
   name: pihole-dns-udp
   labels:
     app: pihole
-    chart: pihole-1.9.0
+    chart: pihole-2.0.0
     release: pihole
     heritage: Helm
 spec:
@@ -68,10 +68,6 @@ spec:
       targetPort: dns-udp
       protocol: UDP
       name: dns-udp
-    - port: 67
-      targetPort: client-udp
-      protocol: UDP
-      name: client-udp
   selector:
     app: pihole
     release: pihole
@@ -83,7 +79,7 @@ metadata:
   name: pihole-web
   labels:
     app: pihole
-    chart: pihole-1.9.0
+    chart: pihole-2.0.0
     release: pihole
     heritage: Helm
 spec:
@@ -108,7 +104,7 @@ metadata:
   name: pihole
   labels:
     app: pihole
-    chart: pihole-1.9.0
+    chart: pihole-2.0.0
     release: pihole
     heritage: Helm
 spec:
@@ -129,7 +125,7 @@ spec:
         checksum.config.blacklist: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546
         checksum.config.regex: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546
         checksum.config.whitelist: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546
-        checksum.config.dnsmasqConfig: b4e9378141618b50cc5fb03a6874984f7a56a611ff3e15ec66c1ca6f2b7d816
+        checksum.config.dnsmasqConfig: 8b72618ca3582fb0062a2a9c73b8beebb4a234642fab15da8127e9e7d47328b
         checksum.config.staticDhcpConfig: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546
       labels:
         app: pihole
