@@ -1,5 +1,18 @@
 apiVersion: v1
 data:
+  adlists.list: |
+    https://raw.githubusercontent.com/mhhakim/pihole-blocklist/master/porn.txt
+kind: ConfigMap
+metadata:
+  labels:
+    app: pihole
+    chart: pihole-2.4.0
+    heritage: Helm
+    release: pihole
+  name: pihole-adlists
+---
+apiVersion: v1
+data:
   02-custom.conf: |
     addn-hosts=/etc/addn-hosts
   05-pihole-custom-cname.conf: ""
@@ -115,7 +128,7 @@ spec:
   template:
     metadata:
       annotations:
-        checksum.config.adlists: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546
+        checksum.config.adlists: 71b84d9a695d3d3393469faa0fb4cefdd1a119b129509417d6f6db204312d70
         checksum.config.blacklist: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546
         checksum.config.dnsmasqConfig: 83ec98561dc23bb51a16eadeee00b955fdb58f7c68789cd1dc9373ce8630203
         checksum.config.ftl: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546
@@ -187,6 +200,9 @@ spec:
         - mountPath: /etc/dnsmasq.d/05-pihole-custom-cname.conf
           name: custom-dnsmasq
           subPath: 05-pihole-custom-cname.conf
+        - mountPath: /etc/pihole/adlists.list
+          name: adlists
+          subPath: adlists.list
       dnsConfig:
         nameservers:
         - 127.0.0.1
@@ -201,6 +217,10 @@ spec:
           defaultMode: 420
           name: pihole-custom-dnsmasq
         name: custom-dnsmasq
+      - configMap:
+          defaultMode: 420
+          name: pihole-adlists
+        name: adlists
 ---
 apiVersion: v1
 kind: Pod
