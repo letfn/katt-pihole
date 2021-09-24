@@ -2,3 +2,6 @@ serviceDhcp:
   enabled: false
 DNS1: 1.1.1.3
 DNS2: 1.0.0.3
+adlists:
+  - https://raw.githubusercontent.com/mhhakim/pihole-blocklist/master/list.txt
+  - https://raw.githubusercontent.com/mhhakim/pihole-blocklist/master/porn.txt
