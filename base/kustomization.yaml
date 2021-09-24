@@ -13,3 +13,7 @@ patches:
   target:
     kind: Service
     name: pihole-dns-udp
+- path: patch-deployment-cloudflared.yaml
+  target:
+    kind: Deployment
+    name: pihole
