@@ -13,21 +13,6 @@ type: Opaque
 data:
   password: "YWRtaW4="
 ---
-# Source: pihole/templates/configmap-adlists.yaml
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: pihole-adlists
-  labels:
-    app: pihole
-    chart: pihole-2.4.0
-    release: pihole
-    heritage: Helm
-data:
-  adlists.list: |
-    https://raw.githubusercontent.com/mhhakim/pihole-blocklist/master/list.txt
-    https://raw.githubusercontent.com/mhhakim/pihole-blocklist/master/porn.txt
----
 # Source: pihole/templates/configmap.yaml
 apiVersion: v1
 kind: ConfigMap
@@ -137,7 +122,7 @@ spec:
   template:
     metadata:
       annotations:
-        checksum.config.adlists: 62e80613540935ed88cc5547741e24922c9693015e1498293ab49472607a7fd
+        checksum.config.adlists: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546
         checksum.config.blacklist: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546
         checksum.config.ftl: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546
         checksum.config.regex: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546
@@ -168,7 +153,7 @@ spec:
                 key: password
                 name: pihole-password
           - name: 'PIHOLE_DNS_'
-            value: '127.0.0.1:5353;127.0.0.1:5353'
+            value: '127.0.0.1#5353;127.0.0.1#5353'
           image: "pihole/pihole:v5.8.1"
           imagePullPolicy: IfNotPresent
           securityContext:
@@ -215,9 +200,6 @@ spec:
           - mountPath: /etc/dnsmasq.d/05-pihole-custom-cname.conf
             name: custom-dnsmasq
             subPath: 05-pihole-custom-cname.conf
-          - mountPath: /etc/pihole/adlists.list
-            name: adlists
-            subPath: adlists.list
           resources:
             {}
       volumes:
@@ -227,10 +209,6 @@ spec:
           defaultMode: 420
           name: pihole-custom-dnsmasq
         name: custom-dnsmasq
-      - configMap:
-          defaultMode: 420
-          name: pihole-adlists
-        name: adlists
 ---
 # Source: pihole/templates/tests/test-pihole-endpoint.yml
 apiVersion: v1
