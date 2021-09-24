@@ -153,7 +153,7 @@ spec:
                 key: password
                 name: pihole-password
           - name: 'PIHOLE_DNS_'
-            value: '8.8.8.8;8.8.4.4'
+            value: '1.1.1.3;1.0.0.3'
           image: "pihole/pihole:v5.8.1"
           imagePullPolicy: IfNotPresent
           securityContext:

@@ -1,2 +1,4 @@
 serviceDhcp:
   enabled: false
+DNS1: 1.1.1.3
+DNS2: 1.0.0.3
