@@ -3,6 +3,8 @@ kind: Namespace
 metadata:
   annotations:
     kuma.io/sidecar-injection: enabled
+    traffic.kuma.io/exclude-inbound-ports: "53"
+    traffic.kuma.io/exclude-outbound-ports: "53"
   name: pihole
 ---
 apiVersion: v1
@@ -14,7 +16,7 @@ kind: ConfigMap
 metadata:
   labels:
     app: pihole
-    chart: pihole-2.4.0
+    chart: pihole-2.4.2
     heritage: Helm
     release: pihole
   name: pihole-adlists
@@ -29,7 +31,7 @@ kind: ConfigMap
 metadata:
   labels:
     app: pihole
-    chart: pihole-2.4.0
+    chart: pihole-2.4.2
     heritage: Helm
     release: pihole
   name: pihole-custom-dnsmasq
@@ -41,7 +43,7 @@ kind: Secret
 metadata:
   labels:
     app: pihole
-    chart: pihole-2.4.0
+    chart: pihole-2.4.2
     heritage: Helm
     release: pihole
   name: pihole-password
@@ -52,7 +54,7 @@ kind: Service
 metadata:
   labels:
     app: pihole
-    chart: pihole-2.4.0
+    chart: pihole-2.4.2
     heritage: Helm
     release: pihole
   name: pihole-dns-tcp
@@ -73,7 +75,7 @@ kind: Service
 metadata:
   labels:
     app: pihole
-    chart: pihole-2.4.0
+    chart: pihole-2.4.2
     heritage: Helm
     release: pihole
   name: pihole-dns-udp
@@ -94,7 +96,7 @@ kind: Service
 metadata:
   labels:
     app: pihole
-    chart: pihole-2.4.0
+    chart: pihole-2.4.2
     heritage: Helm
     release: pihole
   name: pihole-web
@@ -118,7 +120,7 @@ kind: Deployment
 metadata:
   labels:
     app: pihole
-    chart: pihole-2.4.0
+    chart: pihole-2.4.2
     heritage: Helm
     release: pihole
   name: pihole
@@ -136,9 +138,9 @@ spec:
   template:
     metadata:
       annotations:
-        checksum.config.adlists: c4945c024d4fb745737c7d196488156439c36c814c2b9c1573959d5de5c7559
+        checksum.config.adlists: b582356f8873a7872e9907fa0d786ca31160014208ea178955a4e6b671412b9
         checksum.config.blacklist: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546
-        checksum.config.dnsmasqConfig: 83ec98561dc23bb51a16eadeee00b955fdb58f7c68789cd1dc9373ce8630203
+        checksum.config.dnsmasqConfig: 3c2ec553e09f3e7915c0bcaf0661ffd6881695bae9e5716a371b4567d0fe850
         checksum.config.ftl: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546
         checksum.config.regex: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546
         checksum.config.staticDhcpConfig: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546
@@ -160,7 +162,7 @@ spec:
               name: pihole-password
         - name: PIHOLE_DNS_
           value: 127.0.0.1#5353;127.0.0.1#5353
-        image: pihole/pihole:v5.8.1
+        image: pihole/pihole:2021.10
         imagePullPolicy: IfNotPresent
         livenessProbe:
           failureThreshold: 10
