@@ -4,3 +4,5 @@ metadata:
   name: pihole
   annotations:
     kuma.io/sidecar-injection: enabled
+    traffic.kuma.io/exclude-inbound-ports: "53"
+    traffic.kuma.io/exclude-outbound-ports: "53"
