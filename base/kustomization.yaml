@@ -2,19 +2,18 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - namespace.yaml
-  - main.yaml
+  - pihole.yaml
 
 patches:
-  - path: patch-service-loadbalancer.yaml
-    target:
-      kind: Service
-      name: pihole-dns-tcp
-  - path: patch-service-loadbalancer.yaml
-    target:
-      kind: Service
-      name: pihole-dns-udp
-  - path: patch-deployment-cloudflared.yaml
-    target:
-      kind: Deployment
-      name: pihole
+- path: patch-service-loadbalancer.yaml
+  target:
+    kind: Service
+    name: pihole-dns-tcp
+- path: patch-service-loadbalancer.yaml
+  target:
+    kind: Service
+    name: pihole-dns-udp
+- path: patch-deployment-cloudflared.yaml
+  target:
+    kind: Deployment
+    name: pihole
